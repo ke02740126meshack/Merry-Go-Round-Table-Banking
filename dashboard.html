@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Merry-Go-Round Banking</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(120deg,#e0f7fa,#ffffff);display:flex;flex-direction:column;min-height:100vh;}
+header{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;background:#006666;color:white;flex-wrap:wrap;}
+header h1{font-size:1.8rem;font-weight:700;margin:0;}
+nav a{color:white;text-decoration:none;margin:0 10px;padding:6px 12px;border-radius:6px;transition:0.3s;font-weight:500;}
+nav a:hover{background:rgba(255,255,255,0.2);}
+main{flex:1;padding:20px;display:flex;flex-direction:column;align-items:center;}
+#description{max-width:900px;text-align:center;font-size:1rem;color:#004d4d;margin:15px 0 30px 0;line-height:1.5;}
+#currentReceiver{padding:25px;background:linear-gradient(135deg,#00cccc,#006666);border-radius:25px;width:80%;max-width:350px;text-align:center;font-size:1.4rem;font-weight:700;color:white;margin-bottom:30px;box-shadow:0 4px 25px rgba(0,204,204,0.6);transition: all 0.5s ease;}
+#progressContainer{width:80%;max-width:450px;background:#cceff0;border-radius:15px;overflow:hidden;margin-bottom:40px;}
+#progressBar{height:35px;width:0%;background:linear-gradient(90deg,#00cccc,#006666);text-align:center;color:white;line-height:35px;font-weight:bold;font-size:1rem;transition: width 1s ease;border-radius:15px;}
+#receiverCalendar{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:15px;width:90%;max-width:1000px;margin-bottom:40px;}
+#receiverCalendar div{background:#e0f7fa;padding:15px;border-radius:15px;text-align:center;font-weight:600;color:#006666;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,0.1);transition:all 0.3s ease;}
+#receiverCalendar div:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(0,0,0,0.15);}
+#receiverCalendar div.current{background:linear-gradient(135deg,#00cccc,#006666);color:white;box-shadow:0 6px 20px rgba(0,204,204,0.5);}
+#membersStatus{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:15px;width:90%;max-width:1000px;margin-bottom:50px;}
+#membersStatus div{padding:15px;border-radius:15px;text-align:center;font-weight:600;color:#006666;background:#cceff0;box-shadow:0 2px 10px rgba(0,0,0,0.1);transition:all 0.4s ease;cursor:pointer;}
+#membersStatus div:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(0,0,0,0.15);}
+#membersStatus div.receiver{background:linear-gradient(135deg,#00cccc,#006666);color:white;box-shadow:0 6px 20px rgba(0,204,204,0.5);}
+#membersStatus div.paid{background:#00e6b8;color:white;}
+#historyTable{width:90%;max-width:800px;border-collapse:collapse;margin-bottom:50px;}
+#historyTable th,#historyTable td{border:1px solid #ddd;padding:10px;text-align:center;}
+#historyTable th{background:#006666;color:white;font-weight:600;font-size:1rem;}
+#historyTable tr:nth-child(even){background:#f2f2f2;}
+#historyTable tr:hover{background:#cceff0;transition:0.3s;}
+footer{background:#006666;color:white;text-align:center;padding:20px;flex-shrink:0;box-shadow:0 -2px 10px rgba(0,0,0,0.1);font-weight:500;}
+@media screen and (max-width:600px){header{flex-direction:column;align-items:flex-start;}nav{margin-top:10px;}#currentReceiver,#progressContainer,#receiverCalendar,#membersStatus,#historyTable{width:95%;}#receiverCalendar,#membersStatus{grid-template-columns:repeat(auto-fit,minmax(100px,1fr));}}
+</style>
+</head>
+<body>
+<header>
+<h1>Merry-Go-Round Table Banking</h1>
+<nav>
+<a href="dashboard.html">Dashboard</a>
+<a href="contribute.html">Contribute</a>
+<a href="add_members.html">Add Members</a>
+<a href="history.html">History</a>
+<a href="administrator.html">Administrator</a>
+</nav>
+</header>
+
+<main>
+<p id="description">
+Welcome to the Merry-Go-Round Table Banking Platform! Track contributions, view the current receiver, monitor progress, and manage members—all in one sleek interface.
+</p>
+
+<div id="currentReceiver">Loading...</div>
+<div id="progressContainer">
+<div id="progressBar">0%</div>
+</div>
+
+<h3>Receiver Calendar</h3>
+<div id="receiverCalendar"></div>
+
+<h3>Members Status</h3>
+<div id="membersStatus"></div>
+
+<h3>Contribution History</h3>
+<table id="historyTable">
+<thead>
+<tr><th>Month</th><th>Receiver</th><th>Contributor</th></tr>
+</thead>
+<tbody></tbody>
+</table>
+</main>
+
+<footer>&copy; 2026 Merry-Go-Round Table Banking Platform. All Rights Reserved.</footer>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
